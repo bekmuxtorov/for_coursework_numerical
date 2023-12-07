@@ -1,2 +1,2 @@
-# for_coursework_numerical
-Coursework in numerical methods
+# core_django_project
+The core of the django project
