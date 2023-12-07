@@ -1,0 +1,194 @@
+<!-- 
+            <form method="post" action="{% url 'input_view' %}">
+                {% csrf_token %}
+
+                <div>
+                    {{ form.item_00 }}
+                    {{ form.item_01 }}
+                    {{ form.item_02 }}
+                    {{ form.item_03 }}
+                </div>
+
+                <div>
+                    {{ form.item_10 }}
+                    {{ form.item_11 }}
+                    {{ form.item_12 }}
+                    {{ form.item_13 }}
+                </div>
+
+                <div>
+                    {{ form.item_20 }}
+                    {{ form.item_21 }}
+                    {{ form.item_22 }}
+                    {{ form.item_23 }}
+                </div>
+
+                <div>
+                    {{ form.item_30 }}
+                    {{ form.item_31 }}
+                    {{ form.item_32 }}
+                    {{ form.item_33 }}
+                </div>
+
+                <button type="submit">Submit</button>
+            </form>
+            {{error}}
+            {% if error %}:
+            {{error}}
+            {% endif %}
+            <h1>asdfasdf</h1>
+            {{ solution }}
+            <h1>asdfasdf</h1>
+            <br>
+            {{matris}} -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400;1,500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+        </script>
+</head>
+
+<body>
+    <header>
+        <div class="header-box">
+            <div class="logo">
+                <h3>
+                    <a href="https://bekmuxtorov.uz">bekmuxtorov.uz</a>
+                </h3>
+            </div>
+            <div>
+                <h3>
+                    Krilov metodi
+                </h3>
+            </div>
+        </div>
+    </header>
+    <section class="container">
+        <div class="box-body">
+            <div class="for-inputs box">
+                <div class="title">
+                    <h3>Berilgan matrissani kiriting</h3>
+                </div>
+                <div class="input-group">
+                    <form method="post" action="{% url 'input_view' %}">
+                        {% csrf_token %}
+                        <div class="input-items">
+                            <div class="input-item">
+                                {{ form.item_00 }}
+                                {{ form.item_01 }}
+                                {{ form.item_02 }}
+                                {{ form.item_03 }}
+                            </div>
+                            <div class="input-item">
+                                {{ form.item_10 }}
+                                {{ form.item_11 }}
+                                {{ form.item_12 }}
+                                {{ form.item_13 }}
+                            </div>
+                            <div class="input-item">
+                                {{ form.item_20 }}
+                                {{ form.item_21 }}
+                                {{ form.item_22 }}
+                                {{ form.item_23 }}
+                            </div>
+                            <div class="input-item">
+                                {{ form.item_30 }}
+                                {{ form.item_31 }}
+                                {{ form.item_32 }}
+                                {{ form.item_33 }}
+                            </div>
+                        </div>
+                        <button type="submit" class="submit-button">Ishlash</button>
+                        <!-- <input type="submit" value="Ishlash"> -->
+                    </form>
+                </div>
+                <div class="description">
+                    <p><a
+                            href="https://docs.google.com/document/d/1MuHPi70wf-Jqe2wrN_3wdADj9bO62tmD/edit?usp=sharing&ouid=103385865313218058402&rtpof=true&sd=true">Krilov
+                            metodi haqida to'liq ma'lumot olish</a></p>
+                </div>
+            </div>
+
+            <div class="for_results box">
+                <div class="title">
+                    <h3>Natijalar</h3>
+                </div>
+                <div class="result-group">
+                    {% if solution == "Error" %}
+                    <div class="for-kophad">
+                        <p>Berilgan matrissa xarakteristik ko'phadga ega emas. <br>Sabab: Asosiy determinant 0 ga
+                            teng<br><a
+                                href="https://docs.google.com/document/d/1MuHPi70wf-Jqe2wrN_3wdADj9bO62tmD/edit?usp=sharing&ouid=103385865313218058402&rtpof=true&sd=true">Batafsil
+                                o'qish</a>
+                        </p>
+                    </div>
+                    {% else %}
+                    {% if not y_matris_1 %}
+                    <div class="for-p">
+                        <div>
+                            $$Y^{(1)} = \begin{pmatrix}a \\ b \\ c \\ e\end{pmatrix}$$
+                        </div>
+                        <div>
+                            $$Y^{(2)} = \begin{pmatrix}a \\ b \\ c \\ e\end{pmatrix}$$
+                        </div>
+                        <div>
+                            $$Y^{(3)} = \begin{pmatrix}a \\ b \\ c \\ e\end{pmatrix}$$
+                        </div>
+                        <div>
+                            $$Y^{(4)} = \begin{pmatrix}a \\ b \\ c \\ e\end{pmatrix}$$
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="for-p">
+                        <div>
+                            $$Y^{(1)} = \begin{pmatrix}{{y_matris_1.0.0}} \\ {{y_matris_1.1.0}} \\{{y_matris_1.2.0}} \\
+                            {{y_matris_1.3.0}}\end{pmatrix}$$
+                        </div>
+                        <div>
+                            $$Y^{(2)} = \begin{pmatrix}{{y_matris_2.0.0}} \\ {{y_matris_2.1.0}} \\{{y_matris_2.2.0}} \\
+                            {{y_matris_2.3.0}}\end{pmatrix}$$
+                        </div>
+                        <div>
+                            $$Y^{(3)} = \begin{pmatrix}{{y_matris_3.0.0}} \\ {{y_matris_3.1.0}} \\{{y_matris_3.2.0}} \\
+                            {{y_matris_3.3.0}}\end{pmatrix}$$
+                        </div>
+                        <div>
+                            $$Y^{(4)} = \begin{pmatrix}{{y_matris_4.0.0}} \\ {{y_matris_4.1.0}} \\{{y_matris_4.2.0}} \\
+                            {{y_matris_4.3.0}}\end{pmatrix}$$
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="for-kophad">
+                        <p>D(λ) - xarakteristik ko'phad</p>
+                        <p>{{solution}}</p>
+                    </div>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div>
+            <p><a href="https://asadbek_muxtorov.t.me"><span class="c-character">©</span>Asadbek Muxtorov</a>
+            </p>
+            <p>Software Engineer at Google</p>
+        </div>
+    </footer>
+</body>
+
+</html>
