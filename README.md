@@ -4,7 +4,7 @@
 [PPT formatda ko'rish](https://docs.google.com/presentation/d/11ldbi3Ym8sSR7E-ZBAGRdKlECi-oixTM/edit#slide=id.p13)
 
 ## Kurs ishi hujjati
-[DOC formatda ko'rish]((https://docs.google.com/document/d/1MuHPi70wf-Jqe2wrN_3wdADj9bO62tmD/edit))
+[DOC formatda ko'rish](https://docs.google.com/document/d/1MuHPi70wf-Jqe2wrN_3wdADj9bO62tmD/edit))
 
 ## Web loyiha
 
