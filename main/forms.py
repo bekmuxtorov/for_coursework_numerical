@@ -30,10 +30,10 @@ class MatrisItemInputForm(forms.Form):
                                  widget=forms.NumberInput(attrs={'placeholder': 'A34'}))
 
     item_30 = forms.IntegerField(label='A30 kiriting:', required=True,
-                                 widget=forms.NumberInput(attrs={'placeholder': 'A30'}))
+                                 widget=forms.NumberInput(attrs={'placeholder': 'A41'}))
     item_31 = forms.IntegerField(label='A31 kiriting:', required=True,
-                                 widget=forms.NumberInput(attrs={'placeholder': 'A31'}))
+                                 widget=forms.NumberInput(attrs={'placeholder': 'A42'}))
     item_32 = forms.IntegerField(label='A32 kiriting:', required=True,
-                                 widget=forms.NumberInput(attrs={'placeholder': 'A32'}))
+                                 widget=forms.NumberInput(attrs={'placeholder': 'A43'}))
     item_33 = forms.IntegerField(label='A33 kiriting:', required=True,
-                                 widget=forms.NumberInput(attrs={'placeholder': 'A33'}))
+                                 widget=forms.NumberInput(attrs={'placeholder': 'A44'}))
