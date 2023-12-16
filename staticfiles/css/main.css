@@ -6,7 +6,7 @@ body{
 }
 
 .header-box, .container{
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
 }
 
@@ -75,7 +75,9 @@ header{
 .input-item{
     margin: 10px;
 }
-
+.inputs{
+    display: flex;
+}
 input{
     font-family: 'IBM Plex Mono', monospace;
     width: 20%;

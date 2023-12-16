@@ -37,38 +37,59 @@
     <section class="container">
         <div class="box-body">
             <div class="for-inputs box">
-                <div class="title">
-                    <h3>Berilgan matrissani kiriting</h3>
-                </div>
+
                 <div class="input-group">
                     <form method="post" action="{% url 'input_view' %}">
                         {% csrf_token %}
-                        <div class="input-items">
-                            <div class="input-item">
-                                {{ form.item_00 }}
-                                {{ form.item_01 }}
-                                {{ form.item_02 }}
-                                {{ form.item_03 }}
+                        <div class="inputs">
+                            <div class="input-items">
+                                <div class="title">
+                                    <h3>Basic vektor:</h3>
+                                </div>
+                                <div class="input-item">
+                                    {{ basic_form.basic_item_0 }}
+                                </div>
+                                <div class="input-item">
+                                    {{ basic_form.basic_item_1 }}
+                                </div>
+                                <div class="input-item">
+                                    {{ basic_form.basic_item_2 }}
+                                </div>
+                                <div class="input-item">
+                                    {{ basic_form.basic_item_3 }}
+                                </div>
                             </div>
-                            <div class="input-item">
-                                {{ form.item_10 }}
-                                {{ form.item_11 }}
-                                {{ form.item_12 }}
-                                {{ form.item_13 }}
-                            </div>
-                            <div class="input-item">
-                                {{ form.item_20 }}
-                                {{ form.item_21 }}
-                                {{ form.item_22 }}
-                                {{ form.item_23 }}
-                            </div>
-                            <div class="input-item">
-                                {{ form.item_30 }}
-                                {{ form.item_31 }}
-                                {{ form.item_32 }}
-                                {{ form.item_33 }}
+                            <div class="input-items">
+                                <div class="title">
+                                    <h3>Berilgan matrissa:</h3>
+                                </div>
+                                <div class="input-item">
+                                    {{ form.item_00 }}
+                                    {{ form.item_01 }}
+                                    {{ form.item_02 }}
+                                    {{ form.item_03 }}
+                                </div>
+                                <div class="input-item">
+                                    {{ form.item_10 }}
+                                    {{ form.item_11 }}
+                                    {{ form.item_12 }}
+                                    {{ form.item_13 }}
+                                </div>
+                                <div class="input-item">
+                                    {{ form.item_20 }}
+                                    {{ form.item_21 }}
+                                    {{ form.item_22 }}
+                                    {{ form.item_23 }}
+                                </div>
+                                <div class="input-item">
+                                    {{ form.item_30 }}
+                                    {{ form.item_31 }}
+                                    {{ form.item_32 }}
+                                    {{ form.item_33 }}
+                                </div>
                             </div>
                         </div>
+
                         <button type="submit" class="submit-button">Ishlash</button>
                     </form>
                 </div>
@@ -84,6 +105,7 @@
                     <h3>Natijalar</h3>
                 </div>
                 <div class="result-group">
+
                     {% if solution == "Error" %}
                     <div class="for-kophad">
                         <p>Berilgan matrissa xarakteristik ko'phadga ega emas. <br>Sabab: Asosiy determinant 0 ga
@@ -92,6 +114,15 @@
                                 o'qish</a>
                         </p>
                     </div>
+                    {% elif basic_vektor_error == "Error" %}
+                    <div class="for-kophad">
+                        <p><b>Basic vektor noldan farqli bo'lishi shart!</b><br>Sabab: Krilov metodini sharti
+                            hisoblanadi.<br><a
+                                href="https://docs.google.com/document/d/1MuHPi70wf-Jqe2wrN_3wdADj9bO62tmD/edit?usp=sharing&ouid=103385865313218058402&rtpof=true&sd=true">Batafsil
+                                o'qish</a>
+                        </p>
+                    </div>
+
                     {% else %}
                     {% if not y_matris_1 %}
                     <div class="for-p">
@@ -111,20 +142,28 @@
                     {% else %}
                     <div class="for-p">
                         <div>
-                            $$Y^{(1)} = \begin{pmatrix}{{y_matris_1.0.0}} \\ {{y_matris_1.1.0}} \\{{y_matris_1.2.0}} \\
-                            {{y_matris_1.3.0}}\end{pmatrix}$$
+                            <div>
+                                $$Y^{(1)} = \begin{pmatrix}{{y_matris_1.0.0}} \\ {{y_matris_1.1.0}} \\{{y_matris_1.2.0}}
+                                \\
+                                {{y_matris_1.3.0}}\end{pmatrix}$$
+                            </div>
+                            <div>
+                                $$Y^{(2)} = \begin{pmatrix}{{y_matris_2.0.0}} \\ {{y_matris_2.1.0}} \\{{y_matris_2.2.0}}
+                                \\
+                                {{y_matris_2.3.0}}\end{pmatrix}$$
+                            </div>
                         </div>
                         <div>
-                            $$Y^{(2)} = \begin{pmatrix}{{y_matris_2.0.0}} \\ {{y_matris_2.1.0}} \\{{y_matris_2.2.0}} \\
-                            {{y_matris_2.3.0}}\end{pmatrix}$$
-                        </div>
-                        <div>
-                            $$Y^{(3)} = \begin{pmatrix}{{y_matris_3.0.0}} \\ {{y_matris_3.1.0}} \\{{y_matris_3.2.0}} \\
-                            {{y_matris_3.3.0}}\end{pmatrix}$$
-                        </div>
-                        <div>
-                            $$Y^{(4)} = \begin{pmatrix}{{y_matris_4.0.0}} \\ {{y_matris_4.1.0}} \\{{y_matris_4.2.0}} \\
-                            {{y_matris_4.3.0}}\end{pmatrix}$$
+                            <div>
+                                $$Y^{(3)} = \begin{pmatrix}{{y_matris_3.0.0}} \\ {{y_matris_3.1.0}} \\{{y_matris_3.2.0}}
+                                \\
+                                {{y_matris_3.3.0}}\end{pmatrix}$$
+                            </div>
+                            <div>
+                                $$Y^{(4)} = \begin{pmatrix}{{y_matris_4.0.0}} \\ {{y_matris_4.1.0}} \\{{y_matris_4.2.0}}
+                                \\
+                                {{y_matris_4.3.0}}\end{pmatrix}$$
+                            </div>
                         </div>
                     </div>
                     {% endif %}
