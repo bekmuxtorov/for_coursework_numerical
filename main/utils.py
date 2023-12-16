@@ -1,6 +1,8 @@
-def basic_vektor() -> list[int]:
+def basic_vektor(basic_item_0, basic_item_1, basic_item_2, basic_item_3) -> list[int]:
     """Ixtiyoriy noldan farqli vektor"""
-    return [[1], [0], [0], [0]]
+    if basic_item_0 == 0 and basic_item_1 == 0 and basic_item_2 == 0 and basic_item_3 == 0:
+        return []
+    return [[int(basic_item_0)], [int(basic_item_1)], [int(basic_item_2)], [int(basic_item_3)]]
 
 
 def y_matris_aniqlash(matris: list[list[int]], y_matris) -> list[list[int]]:
@@ -94,8 +96,8 @@ def xarakteristik_kophad(solution: list[int]):
     return f"D(λ) = λ^4 - {int(solution[0])}λ^3 + {int(solution[1])}λ^2 + {int(solution[2])}λ + {int(solution[3])}"
 
 
-def krilov_method(matris: list[list[int]]):
-    y_matris_0 = basic_vektor()
+def krilov_method(matris: list[list[int]], basic_vektor: list[list[int]]):
+    y_matris_0 = basic_vektor
     y_matris_1 = y_matris_aniqlash(matris, y_matris_0)
     y_matris_2 = y_matris_aniqlash(matris, y_matris_1)
     y_matris_3 = y_matris_aniqlash(matris, y_matris_2)
