@@ -106,3 +106,60 @@ def krilov_method(matris: list[list[int]], basic_vektor: list[list[int]]):
     solution = kramer_method(y_matris_0, y_matris_1,
                              y_matris_2, y_matris_3, y_matris_4)
     return y_matris_1, y_matris_2, y_matris_3, y_matris_4, solution
+
+
+# <======== For solution Eq ========>
+
+
+def define_a_k(koef):
+    return [i for i in range(1, 4) if koef[i] ** 2 > koef[i-1] * koef[i+1]]
+
+
+def define_a(koef: list[float], a_k: list[int]):
+    """
+    A = max|a_k / a_0|
+    """
+    return max([abs(koef[i] / koef[0]) for i in a_k])
+
+
+def define_big_range(a: float):
+    return range(-(1+round(a)), (1+round(a))+1)
+
+
+def f(koef, x):
+    return x ** 4 + koef[1] * x ** 3 + koef[2] * x ** 2 + koef[3] * x + koef[4]
+
+
+def df(koef, x):
+    return 4 * x ** 3 + 3 * koef[1] * x ** 2 + 2 * koef[2] * x + koef[3]
+
+
+def ranges(koef, big_range):
+    ranges = [
+        list(range(i, i + 1 + 1))
+        for i, j in zip(big_range, big_range[1:])
+        if f(koef, i) * f(koef, j) <= 0
+    ]
+    return ranges
+
+
+def newton_raphson(koef, range_item, tolerance=1e-3, max_iterations=100):
+    x_n = range_item[0] - f(koef, range_item[0]) / df(koef, range_item[0])
+    for iteration in range(max_iterations):
+        f_x_n = f(koef, x_n)
+        df_x_n = df(koef, x_n)
+
+        if abs(f_x_n) < tolerance:
+            return x_n
+
+        x_n = x_n - f_x_n / df_x_n
+
+
+def solve_eq(koef):
+    """
+    4 darajali tenglamani ishlovchi funksiya
+    """
+    a = define_a(koef, define_a_k(koef))
+    solution_range = define_big_range(a)
+    ranges_ = ranges(koef, solution_range)
+    return {round(newton_raphson(koef, range_item), 4) for range_item in ranges_}
