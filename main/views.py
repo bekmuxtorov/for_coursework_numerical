@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from .forms import MatrisItemInputForm, BasicVektorInputForm
-from .utils import krilov_method, basic_vektor
+from .utils import krilov_method, basic_vektor, solve_eq
 # Create your views here.
 
 
@@ -55,12 +55,25 @@ def input_view(request):
                 return render(request, "input_request.html", content)
 
             try:
-                p1 = int(solution[0])
-                p2 = int(solution[1])
-                p3 = int(solution[2])
-                p4 = int(solution[3])
-
+                p1 = round(solution[0], 4)
+                p2 = round(solution[1], 4)
+                p3 = round(solution[2], 4)
+                p4 = round(solution[3], 4)
                 solution_items = f"$$D(λ) = λ^4 {'+' + str(p1) if p1 >= 0 else p1}λ^3 {'+' + str(p2) if p2 > 0 else p2}λ^2 {'+' + str(p3) if p3 > 0 else p3}λ {'+' + str(p4) if p4 > 0 else p4}$$"
+                koef = [1, p1, p2, p3, p4]
+                solution_status = True
+                for koef_item in koef:
+                    if abs(koef_item) > 100_000_000:
+                        solution_status = False
+
+                if solution_status:
+                    solution_roots = solve_eq(koef)
+                    solution_roots_str = "$$ "
+                    for indx, solution_root in enumerate(solution_roots):
+                        solution_roots_str += f"λ_{indx+1} = {solution_root},\;"
+                    solution_roots_str += "$$"
+                else:
+                    solution_roots_str = "Tanlangan matrissaning hadlari juda katta! Sonlarni kichiklashtiring."
             except Exception as e:
                 print(e)
                 solution_items = "Error"
@@ -71,6 +84,7 @@ def input_view(request):
                 "y_matris_3": y_matris_3,
                 "y_matris_4": y_matris_4,
                 "solution": solution_items,
+                "solution_roots": solution_roots_str,
                 "form": form,
                 "basic_form": basic_form,
             }
